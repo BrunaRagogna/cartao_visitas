@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão Digital - Bruna Ragogna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #fdfbf8;
+            --accent-gold: #a68966;
+            --text-dark: #3a3a3a;
+            --btn-hover: #ece3d5;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #d1d1d1;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card-container {
+            background-color: var(--primary-bg);
+            width: 100%;
+            max-width: 380px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 1px solid #d8cfc0;
+            border-radius: 8px;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-gold);
+            object-fit: cover;
+            margin-bottom: 15px;
+            background-color: #eee;
+        }
+
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 22px;
+            color: var(--text-dark);
+            margin: 5px 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 13px;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .link-btn {
+            background-color: transparent;
+            border: 1.5px solid var(--accent-gold);
+            color: var(--text-dark);
+            padding: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .link-btn:hover {
+            background-color: var(--btn-hover);
+            transform: scale(1.02);
+        }
+
+        .featured {
+            background-color: var(--accent-gold);
+            color: white;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 10px;
+            color: #999;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <img src="foto-bruna.jpg" alt="Bruna Ragogna" class="profile-img">
+        
+        <h1>BRUNA RAGOGNA</h1>
+        <div class="tagline">Direito & Tecnologia</div>
+
+        <div class="links-container">
+            <a href="https://brunaragogna.github.io/curriculo-Bruna/" class="link-btn featured">📄 Meu Currículo Online</a>
+            <a href="https://wa.me/5519992803885" class="link-btn">💬 WhatsApp Direto</a>
+            <a href="https://linkedin.com/in/bruna-ragogna" class="link-btn">LinkedIn Profissional</a>
+            <a href="mailto:bruna.ragogna@email.com" class="link-btn">📧 Enviar E-mail</a>
+        </div>
+
+        <footer>
+            Obrigada pela visita
+        </footer>
+    </div>
+
+</body>
+</html>
