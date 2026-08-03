@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <!--
+        Permite que o cartão se adapte a celulares,
+        tablets e computadores.
+    -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- Descrição da página para mecanismos de busca e compartilhamentos -->
+    <meta
+        name="description"
+        content="Cartão de visitas digital de Bruna Thaís S. Ragogna, estudante de Direito com interesse em tecnologia e inovação."
+    >
+
+    <!-- Cor exibida pelo navegador em alguns dispositivos móveis -->
+    <meta name="theme-color" content="#f6e5e5">
+
+    <title>
+        Bruna Thaís S. Ragogna | Direito e Tecnologia
+    </title>
+
+    <!-- =========================================================
+         FONT AWESOME
+
+         Biblioteca utilizada para os ícones:
+         - WhatsApp;
+         - LinkedIn;
+         - Currículo;
+         - Globo;
+         - Links externos.
+         ========================================================= -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    >
+
+    <!-- =========================================================
+         GOOGLE FONTS
+
+         A fonte Manrope oferece aparência moderna,
+         profissional e boa legibilidade.
+         ========================================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        /* =========================================================
+           1. VARIÁVEIS VISUAIS
+           ========================================================= */
+
+        :root {
+            --fundo-claro: #fffafa;
+            --fundo-rosa: #f6e5e5;
+
+            --rosa-principal: #a85f5a;
+            --rosa-hover: #8f4c48;
+            --rosa-suave: #d9a58e;
+
+            --dourado: #b58a68;
+            --grafite: #34282b;
+            --texto-secundario: #5f5154;
+            --branco: #ffffff;
+
+            --sombra-cartao:
+                0 18px 45px rgba(116, 72, 72, 0.12);
+
+            --sombra-botao:
+                0 8px 22px rgba(168, 95, 90, 0.2);
+        }
+
+        /* =========================================================
+           2. RESET E CONFIGURAÇÕES GERAIS
+           ========================================================= */
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            min-width: 320px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px 16px;
+            overflow-x: hidden;
+
+            color: var(--grafite);
+            font-family: "Manrope", Arial, sans-serif;
+
+            /*
+                Fundo suave em branco e rosa.
+                Os gradientes criam iluminação delicada.
+            */
+            background:
+                radial-gradient(
+                    circle at 12% 8%,
+                    rgba(255, 255, 255, 0.98) 0%,
+                    rgba(255, 255, 255, 0) 32%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    rgba(238, 194, 194, 0.32) 0%,
+                    rgba(238, 194, 194, 0) 35%
+                ),
+                linear-gradient(
+                    145deg,
+                    var(--fundo-claro) 0%,
+                    var(--fundo-rosa) 100%
+                );
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a,
+        button {
+            font: inherit;
+        }
+
+        /* =========================================================
+           3. ANIMAÇÕES
+           ========================================================= */
+
+        @keyframes aparecerDeBaixo {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animar {
+            opacity: 0;
+
+            animation:
+                aparecerDeBaixo 700ms
+                cubic-bezier(0.16, 1, 0.3, 1)
+                forwards;
+        }
+
+        /*
+            Respeita usuários que preferem reduzir movimentos
+            nas configurações de acessibilidade.
+        */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 1ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 1ms !important;
+            }
+
+            .animar {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* =========================================================
+           4. CARTÃO PRINCIPAL
+           ========================================================= */
+
+        .cartao {
+            width: 100%;
+            max-width: 430px;
+
+            padding:
+                clamp(26px, 6vw, 42px)
+                clamp(18px, 5vw, 34px);
+
+            text-align: center;
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 28px;
+
+            /*
+                Fundo translúcido para destacar o cartão.
+            */
+            background: rgba(255, 255, 255, 0.42);
+
+            box-shadow: var(--sombra-cartao);
+
+            /*
+                Efeito de vidro em navegadores compatíveis.
+            */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* =========================================================
+           5. FOTO DE PERFIL
+           ========================================================= */
+
+        .perfil {
+            animation-delay: 100ms;
+        }
+
+        /*
+            O círculo foi aumentado aproximadamente 50%.
+
+            Tamanho anterior aproximado: 172px
+            Novo tamanho máximo: 258px
+
+            O clamp mantém a foto responsiva:
+            - 210px em telas menores;
+            - até 258px em telas maiores.
+        */
+        .foto-wrapper {
+            position: relative;
+
+            width: clamp(210px, 58vw, 258px);
+            height: clamp(210px, 58vw, 258px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 20px;
+            padding: 6px;
+
+            overflow: hidden;
+            border-radius: 50%;
+
+            /*
+                Fundo rosé visível atrás da imagem.
+            */
+            background:
+                radial-gradient(
+                    circle at 30% 20%,
+                    #ffffff 0%,
+                    #f5ddd6 48%,
+                    var(--rosa-suave) 100%
+                );
+
+            box-shadow:
+                0 16px 34px rgba(168, 95, 90, 0.22),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+        }
+
+        /*
+            Enquadramento da foto.
+
+            object-fit: cover:
+            - preenche o círculo;
+            - elimina espaços excessivos;
+            - mantém a proporção;
+            - aproxima o enquadramento.
+
+            object-position: 50% 42%:
+            - centraliza horizontalmente;
+            - posiciona o rosto um pouco acima;
+            - favorece o enquadramento do colo ao topo da cabeça.
+        */
+        .foto-perfil {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            object-position: 50% 42%;
+
+            border: 5px solid var(--branco);
+            border-radius: 50%;
+
+            /*
+                Ampliação adicional para destacar o rosto.
+            */
+            transform: scale(1.04);
+
+            transition: transform 250ms ease;
+        }
+
+        /*
+            Ajustes opcionais do enquadramento:
+
+            Para mostrar mais colo:
+            object-position: 50% 48%;
+
+            Para subir o rosto:
+            object-position: 50% 38%;
+
+            Para ampliar mais:
+            transform: scale(1.08);
+        */
+
+        /* =========================================================
+           6. TEXTOS DO PERFIL
+           ========================================================= */
+
+        .nome {
+            width: 100%;
+
+            color: var(--rosa-principal);
+
+            font-size: clamp(16px, 5.8vw, 29px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.8px;
+
+            /*
+                Mantém o nome em uma única linha.
+            */
+            white-space: nowrap;
+        }
+
+        .cargo {
+            margin-top: 8px;
+
+            color: var(--grafite);
+
+            font-size: clamp(12px, 3.5vw, 14px);
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .descricao {
+            max-width: 340px;
+
+            margin: 12px auto 0;
+
+            color: var(--texto-secundario);
+
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /*
+            Mostra o diferencial tecnológico
+            sem afirmar experiência jurídica inexistente.
+        */
+        .diferencial {
+            max-width: 340px;
+
+            margin: 9px auto 0;
+
+            color: var(--rosa-principal);
+
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .divisor {
+            width: 64px;
+            height: 2px;
+
+            margin: 24px auto 28px;
+
+            border-radius: 999px;
+            background: var(--dourado);
+        }
+
+        /* =========================================================
+           7. LINKS PROFISSIONAIS
+           ========================================================= */
+
+        .links {
+            display: grid;
+            gap: 14px;
+        }
+
+        /*
+            Todos os botões usam a mesma classe,
+            mantendo a identidade visual consistente.
+        */
+        .link-profissional {
+            width: 100%;
+            min-height: 56px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 8px 18px 8px 8px;
+
+            border-radius: 999px;
+
+            color: var(--branco);
+            text-align: left;
+            text-decoration: none;
+
+            background: var(--rosa-principal);
+            box-shadow: var(--sombra-botao);
+
+            transition:
+                transform 180ms ease,
+                background-color 180ms ease,
+                box-shadow 180ms ease;
+        }
+
+        .link-profissional:hover {
+            color: var(--branco);
+            background: var(--rosa-hover);
+            box-shadow: 0 12px 27px rgba(143, 76, 72, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .link-profissional:active {
+            transform: translateY(-1px);
+        }
+
+        /*
+            Foco visível para navegação por teclado.
+        */
+        .link-profissional:focus-visible {
+            outline: 3px solid var(--grafite);
+            outline-offset: 4px;
+        }
+
+        /* =========================================================
+           8. ÍCONES E TEXTOS DOS BOTÕES
+           ========================================================= */
+
+        .icone {
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+
+            color: var(--branco);
+            font-size: 20px;
+        }
+
+        .texto-link {
+            flex: 1;
+
+            padding-left: 14px;
+
+            color: var(--branco);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .seta {
+            margin-left: 12px;
+
+            color: var(--branco);
+            font-size: 12px;
+            opacity: 0.72;
+        }
+
+        /* =========================================================
+           9. RODAPÉ
+           ========================================================= */
+
+        .rodape {
+            margin-top: 28px;
+
+            color: var(--texto-secundario);
+
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* =========================================================
+           10. RESPONSIVIDADE PARA TELAS PEQUENAS
+           ========================================================= */
+
+        @media (max-width: 380px) {
+            body {
+                padding: 16px 10px;
+            }
+
+            .cartao {
+                padding-right: 14px;
+                padding-left: 14px;
+            }
+
+            /*
+                Reduz o círculo em telas estreitas.
+            */
+            .foto-wrapper {
+                width: 210px;
+                height: 210px;
+            }
+
+            .foto-perfil {
+                object-position: 50% 42%;
+                transform: scale(1.02);
+            }
+
+            .nome {
+                font-size: 15.5px;
+                letter-spacing: -0.9px;
+            }
+
+            .cargo {
+                font-size: 11px;
+                letter-spacing: 1px;
+            }
+
+            .link-profissional {
+                padding-right: 14px;
+            }
+        }
+
+        /*
+            Em dispositivos sensíveis ao toque,
+            não aplicamos o efeito hover.
+        */
+        @media (hover: none) {
+            .link-profissional:hover {
+                color: var(--branco);
+                background: var(--rosa-principal);
+                box-shadow: var(--sombra-botao);
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <article
+            class="cartao"
+            aria-label="Cartão de visitas digital de Bruna Ragogna"
+        >
+            <!-- =====================================================
+                 PERFIL PRINCIPAL
+                 ===================================================== -->
+
+            <header class="perfil animar">
+                <div class="foto-wrapper">
+                    <!--
+                        O arquivo precisa estar na mesma pasta
+                        do index.html.
+
+                        O CSS realiza:
+                        - corte circular;
+                        - centralização;
+                        - ampliação;
+                        - enquadramento do colo ao topo da cabeça.
+                    -->
+                    <img
+                        class="foto-perfil"
+                        src="./Bruna_Fundo.png"
+                        alt="Foto de perfil de Bruna Thaís S. Ragogna"
+                        width="800"
+                        height="800"
+                        decoding="async"
+                    >
+                </div>
+
+                <h1 class="nome">
+                    Bruna Thaís S. Ragogna
+                </h1>
+
+                <p class="cargo">
+                    Estudante de Direito
+                </p>
+
+                <p class="descricao">
+                    Construindo uma trajetória com ética, estudo e compromisso.
+                </p>
+
+                <!--
+                    Apresenta o interesse tecnológico como diferencial.
+                -->
+                <p class="diferencial">
+                    Interesse em tecnologia, inovação e soluções digitais.
+                </p>
+
+                <!-- Elemento decorativo ignorado por leitores de tela -->
+                <div
+                    class="divisor"
+                    aria-hidden="true"
+                ></div>
+            </header>
+
+            <!-- =====================================================
+                 LINKS PROFISSIONAIS
+                 ===================================================== -->
+
+            <nav
+                class="links"
+                aria-label="Links profissionais"
+            >
+                <!-- =================================================
+                     WHATSAPP
+                     ================================================= -->
+
+                <a
+                    class="link-profissional animar"
+                    style="animation-delay: 280ms;"
+                    href="https://wa.me/5519992803885?text=Ol%C3%A1%20Bruna%2C%20vi%20seu%20cart%C3%A3o%20de%20visitas%20digital%21"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Entrar em contato com Bruna pelo WhatsApp"
+                >
+                    <span
+                        class="icone"
+                        aria-hidden="true"
+                    >
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </span>
+
+                    <span class="texto-link">
+                        WhatsApp
+                    </span>
+
+                    <span
+                        class="seta"
+                        aria-hidden="true"
+                    >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </span>
+                </a>
+
+                <!-- =================================================
+                     LINKEDIN
+                     ================================================= -->
+
+                <a
+                    class="link-profissional animar"
+                    style="animation-delay: 400ms;"
+                    href="https://www.linkedin.com/in/bruna-ragogna/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visitar o perfil de Bruna no LinkedIn"
+                >
+                    <span
+                        class="icone"
+                        aria-hidden="true"
+                    >
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </span>
+
+                    <span class="texto-link">
+                        LinkedIn
+                    </span>
+
+                    <span
+                        class="seta"
+                        aria-hidden="true"
+                    >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </span>
+                </a>
+
+                <!-- =================================================
+                     CURRÍCULO ONLINE
+                     ================================================= -->
+
+                <a
+                    class="link-profissional animar"
+                    style="animation-delay: 520ms;"
+                    href="https://brunaragogna.github.io/curriculo_bruna_online/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Abrir o currículo online de Bruna Thaís S. Ragogna"
+                >
+                    <span
+                        class="icone"
+                        aria-hidden="true"
+                    >
+                        <i class="fa-solid fa-globe"></i>
+                    </span>
+
+                    <span class="texto-link">
+                        Currículo online
+                    </span>
+
+                    <span
+                        class="seta"
+                        aria-hidden="true"
+                    >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </span>
+                </a>
+
+                <!-- =================================================
+                     CURRÍCULO EM PDF
+
+                     O endereço foi atualizado conforme solicitado.
+                     ================================================= -->
+
+                <a
+                    class="link-profissional animar"
+                    style="animation-delay: 640ms;"
+                    href="https://brunaragogna.github.io/curriculo-Bruna/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Abrir o currículo em PDF de Bruna Thaís S. Ragogna"
+                >
+                    <span
+                        class="icone"
+                        aria-hidden="true"
+                    >
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </span>
+
+                    <span class="texto-link">
+                        Currículo em PDF
+                    </span>
+
+                    <span
+                        class="seta"
+                        aria-hidden="true"
+                    >
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </span>
+                </a>
+            </nav>
+
+            <footer class="rodape">
+                Cartão de visitas digital
+            </footer>
+        </article>
+    </main>
+
+    <script>
+        /*
+         * =========================================================
+         * TRATAMENTO DE ERRO DA IMAGEM
+         * =========================================================
+         *
+         * Os links funcionam mesmo sem JavaScript.
+         * Este script apenas informa caso a foto não seja encontrada.
+         */
+
+        const fotoPerfil = document.querySelector(".foto-perfil");
+
+        fotoPerfil.addEventListener("error", () => {
+            fotoPerfil.alt = "Foto de perfil indisponível";
+            fotoPerfil.style.opacity = "0";
+
+            console.error(
+                "Não foi possível carregar './Bruna_Fundo.png'. " +
+                "Verifique o nome do arquivo, a extensão e a pasta."
+            );
+        });
+    </script>
+</body>
+</html>
